@@ -6,6 +6,7 @@ import { requireAuth } from '../middlewares/require-auth';
 const router = express.Router();
 
 router.get('/api/users/currentuser', currentUser, (req, res) => {
+  console.log('current user called');
   res.send({ currentUser: req.currentUser || null });
 });
 

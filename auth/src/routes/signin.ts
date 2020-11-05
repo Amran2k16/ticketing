@@ -26,8 +26,8 @@ router.post(
     }
 
     const passwordsMatch = await PasswordManager.compare(
-      existingUser.password,
-      password
+      password,
+      existingUser.password
     );
     if (!passwordsMatch) throw new BadRequestError('Invalid Credentials');
     const userJwt = jwt.sign(

@@ -13,9 +13,10 @@ interface UserDoc extends mongoose.Document {
   password: string;
 }
 
-//Interface describing the properties of a User model
+//Interface describing the properties of a User model.
 interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttrs): UserDoc;
+  test(): any;
 }
 
 const userSchema = new mongoose.Schema(
@@ -40,6 +41,7 @@ const userSchema = new mongoose.Schema(
     },
   }
 );
+
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };
@@ -53,5 +55,4 @@ userSchema.pre('save', async function (done) {
 });
 
 const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
-
 export { User };
