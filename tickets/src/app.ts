@@ -3,6 +3,7 @@ import { json } from 'body-parser';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { errorHandler,NotFoundError } from '@amranprogramming/common';
+import { createTicketRouter } from './routes/new';
 
 
 const app = express();
@@ -16,7 +17,9 @@ app.use(
   })
 );
 
-app.get('*', (req, res) => {
+app.use(createTicketRouter)
+
+app.all('*', (req, res) => {
   throw new NotFoundError();
 });
 
