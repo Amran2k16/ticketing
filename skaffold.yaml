@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: stephengrider/auth
+    - image: amranprogramming/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,11 +16,19 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: stephengrider/client
+    - image: amranprogramming/client
       context: client
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: '**/*.js'
+            dest: .
+    - image: amranprogramming/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
             dest: .
